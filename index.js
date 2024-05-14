@@ -6,7 +6,7 @@ const app = express()
 require('dotenv').config()
 
 const corsOptions = {
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://jwt-b9a11.web.app'],
     credentials: true,
     optionSuccessStatus: 200
 }
@@ -32,7 +32,7 @@ async function run() {
     try {
         // Collection
         const jobCollection = client.db('JobInformations').collection('jobCategory')
-        // data of tab
+        // data of tabs
         app.get('/jobs', async(req, res) => {
             const result = await jobCollection.find().toArray()
             res.send(result)
