@@ -55,12 +55,12 @@ async function run() {
         });
 
         //  Delete a single data
-        // app.delete('/addedjobs/:id', async (req, res) => {
-        //     const id = req.params.id
-        //     const query = { _id: new ObjectId(id) }
-        //     const result = await addedJobsCollection.deleteOne(query)
-        //     res.send(result)
-        // })
+        app.delete('/addedjobs/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: new ObjectId(id) }
+            const result = await addedJobsCollection.deleteOne(query)
+            res.send(result)
+        })
 
     }
     finally { }
