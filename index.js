@@ -32,13 +32,28 @@ async function run() {
     try {
         // Collection
         const jobCollection = client.db('JobInformations').collection('jobCategory')
+        const addedJobsCollection = client.db('JobInformations').collection('addedJobs')
         // data of tabs
-        app.get('/jobs', async(req, res) => {
+        app.get('/jobs', async (req, res) => {
             const result = await jobCollection.find().toArray()
             res.send(result)
         })
-    } finally {
+
+        app.get('/addedjobs', async(req, res) => {
+            const result = await addedJobsCollection.find().toArray()
+            res.send(result)
+        })
+
+        // data posting from frontend
+        app.post('/addedjobs', async (req, res) => {
+            const allJobs = req.body;
+            console.log(allJobs);
+            const result = await addedJobsCollection.insertOne(allJobs);
+            console.log(result);
+            res.send(result)
+        });
     }
+    finally { }
 }
 run().catch(console.dir);
 
