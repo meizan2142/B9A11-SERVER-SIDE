@@ -39,7 +39,8 @@ async function run() {
             res.send(result)
         })
 
-        app.get('/addedjobs', async(req, res) => {
+        // Get Added Jobs Data
+        app.get('/addedjobs', async (req, res) => {
             const result = await addedJobsCollection.find().toArray()
             res.send(result)
         })
@@ -52,6 +53,15 @@ async function run() {
             console.log(result);
             res.send(result)
         });
+
+        //  Delete a single data
+        // app.delete('/addedjobs/:id', async (req, res) => {
+        //     const id = req.params.id
+        //     const query = { _id: new ObjectId(id) }
+        //     const result = await addedJobsCollection.deleteOne(query)
+        //     res.send(result)
+        // })
+
     }
     finally { }
 }
